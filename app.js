@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: 'Demonstration of Operating Systems resource management in an online examination and result processing platform'
     },
     'sync': {
-      title: 'Module 1: Process Synchronization (Producer-Consumer Problem)',
-      desc: 'Bounded answer submission queue synchronized using Semaphores (mutex, empty, full)'
+      title: 'Module 1: Producer-Consumer Problem',
+      desc: 'Bounded answer submission queue synchronized between student portals and evaluation workers'
     },
     'cpu': {
       title: 'Module 2: CPU Scheduling Algorithms',

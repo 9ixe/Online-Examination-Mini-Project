@@ -21,20 +21,19 @@ Without rigorous Operating System-level resource management:
 
 **ExamOS** is an interactive, problem-oriented Operating Systems Algorithm Visualizer that models and resolves these high-concurrency bottlenecks by implementing four foundational OS mechanisms working in harmony:
 
-1. **Process Synchronization (Producer–Consumer with Bounded Buffer):** Thread-safe submission ingestion queue using binary mutex and counting semaphores (`mutex`, `empty`, `full`).
-2. **CPU Task Scheduling:** Multi-algorithm evaluation engine supporting Round Robin ($q = 2\text{ ms}$), Shortest Job First (SJF), First-Come First-Served (FCFS), and Priority Scheduling with interactive Gantt charts, metrics, and starvation analysis.
-3. **Deadlock Avoidance (Banker's Algorithm):** Real-time safety analysis using Allocation, Max Demand, Need, and Available matrices for Auto-Grading Threads ($R_1$), Database Write Locks ($R_2$), and PDF Generator Slots ($R_3$), complete with a dynamic resource-request tester.
+1. **Producer-Consumer Problem (Bounded Buffer Queue):** Thread-safe submission ingestion queue where student submission portals act as Producers and auto-grading workers act as Consumers over a bounded buffer.
+2. **CPU Scheduling:** Multi-algorithm evaluation engine supporting Round Robin ($q = 2\text{ ms}$), Shortest Job First (SJF), First-Come First-Served (FCFS), and Priority Scheduling with interactive Gantt charts, metrics, and starvation analysis.
+3. **Banker's Algorithm (Deadlock Avoidance):** Real-time safety analysis using Allocation, Max Demand, Need, and Available matrices for Auto-Grading Threads ($R_1$), Database Write Locks ($R_2$), and PDF Generator Slots ($R_3$), complete with a dynamic resource-request tester.
 4. **Memory Management (Dynamic Partitioning):** Contiguous RAM allocation engine implementing First Fit, Best Fit, and Worst Fit, tracking internal and external fragmentation, memory holes, and runtime compaction.
-5. **Integrated Exam Pipeline:** End-to-end simulation tracking student answer scripts as they move through ingestion, scheduling, deadlock safety checks, RAM allocation, and scorecard publishing.
 
 ---
 
 ## 🚀 Core Visualizer Modules
 
-### 1. Ingestion Buffer (Process Synchronization)
-- **Bounded Buffer:** Configurable submission buffer capacity $N$ (default: 8 slots).
-- **Semaphores & Mutex:** Real-time visual tracking of `mutex` (1 = unlocked, 0 = locked), `empty` (free slots), and `full` (queued answer scripts).
-- **Peak Burst Simulation:** "⚡ Peak Submission Burst (5 Submissions)" simulates final-second exam countdown surges to show buffer saturation, blocking, and sleep-wakeup mechanisms.
+### 1. Producer-Consumer Problem (Bounded Buffer Queue)
+- **Bounded Buffer Architecture:** Configurable submission buffer capacity $N$ (default: 8 slots).
+- **Buffer State Controls:** Real-time visual tracking of queue access (`mutex`), available capacity (`empty`), and queued answer packets (`full`).
+- **Peak Burst Simulation:** "⚡ Peak Submission Burst (5 Submissions)" simulates final-second exam countdown surges to show buffer saturation, producer blocking, and consumer wake-up without data loss.
 - **Thread Monitor:** Live status tracking for incoming student submission threads (Producers) and background auto-grading workers (Consumers).
 
 ### 2. CPU Examination Task Scheduling
@@ -234,7 +233,7 @@ The project includes the comprehensive **Assignment No. 3 Complex Problem-Solvin
 
 | Topic | Key Question | 1-Line Viva Answer |
 |---|---|---|
-| **Process Synchronization** | Why use counting semaphores with mutex? | `mutex` guarantees mutual exclusion while `empty` and `full` semaphores prevent buffer overflow and underflow without busy waiting. |
+| **Producer-Consumer** | How does the bounded buffer prevent race conditions? | By serializing buffer insertion and removal with a mutual exclusion lock and tracking queue capacity with empty/full counters without busy waiting. |
 | **CPU Scheduling** | Why choose Round Robin ($q=2$)? | Prevents the Convoy Effect and eliminates thread starvation, giving all exam evaluation tasks fair and bounded turnaround times. |
 | **Deadlock Avoidance** | What is an unsafe state? | An unsafe state is not necessarily a deadlock, but one where the OS can no longer guarantee that all processes will finish without deadlock. |
 | **Memory Allocation** | Why did Best Fit outperform First Fit? | Best Fit places requests in the smallest suitable partition, preventing large partitions from being fragmented by small tasks. |

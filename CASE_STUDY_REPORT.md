@@ -43,7 +43,7 @@ During final submission rushes, the system faces four critical concurrency bottl
 - **Memory Allocation Bottleneck:** Variable student answer payloads create memory holes (fragmentation) across system partitions.
 
 ### 2.2 Objectives
-- Build a thread-safe bounded buffer queue using semaphores (`mutex`, `empty`, `full`) to ingest answer scripts without loss or race conditions.
+- Build a thread-safe bounded buffer queue for the Producer-Consumer problem to ingest answer scripts without loss or race conditions.
 - Schedule evaluation tasks using Round Robin and priority mechanisms to ensure fair latency without thread starvation.
 - Employ Banker’s Algorithm to test safety before granting shared grading threads, database locks, or PDF slots to prevent deadlocks.
 - Dynamically allocate memory blocks using Best Fit and First Fit while tracking internal and external fragmentation.
@@ -61,9 +61,9 @@ During final submission rushes, the system faces four critical concurrency bottl
 
 ## 3. Four Core Operating System Concepts: Explanation and Justification
 
-### 3.1 Process Synchronization (Producer–Consumer with Bounded Buffer)
-- **Concept:** Student submission portals act as Producers enqueuing answer scripts. Auto-evaluation background threads act as Consumers dequeuing tasks.
-- **Justification:** Without `mutex`, concurrent submissions overwrite buffer slots. Counting semaphores `empty` and `full` guarantee that submissions wait when the buffer is full and consumers sleep when the queue is empty, eliminating dropped answers.
+### 3.1 Producer–Consumer Problem (Bounded Buffer Queue)
+- **Concept:** Student submission portals act as Producers enqueuing answer scripts. Auto-evaluation background threads act as Consumers dequeuing tasks over a synchronized bounded buffer.
+- **Justification:** Without controlled queue access, concurrent submissions overwrite buffer slots. Regulating empty and full queue bounds ensures that submissions wait when the buffer is full and consumers sleep when the queue is empty, eliminating dropped answers and race conditions.
 
 ### 3.2 CPU Scheduling (Fair-Share Round Robin & Multi-Algorithm Analysis)
 - **Concept:** Evaluates Round Robin ($q = 2$), Shortest Job First (SJF), and First-Come First-Served (FCFS).
@@ -117,4 +117,4 @@ During final submission rushes, the system faces four critical concurrency bottl
 
 ## 7. Conclusion
 
-By coordinating student answer ingestion through semaphores, scheduling CPU execution with Round Robin, validating resource requests with Banker's Algorithm, and managing memory through Best Fit dynamic partitioning, the Online Examination and Result Processing System guarantees zero lost submissions, zero deadlocks, fair evaluation throughput, and optimal memory utilization under peak examination traffic.
+By coordinating student answer ingestion through the Producer-Consumer bounded queue, scheduling CPU execution with Round Robin, validating resource requests with Banker's Algorithm, and managing memory through Best Fit dynamic partitioning, the Online Examination and Result Processing System guarantees zero lost submissions, zero deadlocks, fair evaluation throughput, and optimal memory utilization under peak examination traffic.
