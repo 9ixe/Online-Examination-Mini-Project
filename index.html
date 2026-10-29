@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operating Systems Resource Management — Online Examination System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-badge">OS</div>
+        <div class="brand-text">
+          <h1>Algorithm Visualizer</h1>
+          <span class="subtitle">Online Examination System</span>
+        </div>
+      </div>
+
+      <div class="scenario-badge">
+        <span class="badge-label">Selected Scenario:</span>
+        <span class="badge-title">Problem 4: Online Examination System</span>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-item active" data-tab="dashboard">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>Architecture & Overview</span>
+        </button>
+        <button class="nav-item" data-tab="sync">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+          <span>1. Process Synchronization</span>
+          <span class="pill">Semaphores</span>
+        </button>
+        <button class="nav-item" data-tab="cpu">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line></svg>
+          <span>2. CPU Scheduling</span>
+          <span class="pill">Gantt</span>
+        </button>
+        <button class="nav-item" data-tab="deadlock">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          <span>3. Deadlock Avoidance</span>
+          <span class="pill">Banker's</span>
+        </button>
+        <button class="nav-item" data-tab="memory">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 2h20v20H2z"></path><path d="M7 2v20M12 2v20M17 2v20M2 7h20M2 12h20M2 17h20"></path></svg>
+          <span>4. Memory Management</span>
+          <span class="pill">Partitioning</span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="top-header">
+        <div>
+          <h2 id="current-tab-title">System Architecture & Overview</h2>
+          <p id="current-tab-desc">Demonstration of Operating Systems resource management in an online examination and result processing system</p>
+        </div>
+        <div class="header-right">
+          <div class="status-indicator">
+            <span class="indicator-dot"></span>
+            <span>Kernel Emulation Active</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- TAB 0: DASHBOARD / OVERVIEW -->
+      <section id="tab-dashboard" class="tab-content active">
+        <div class="academic-banner">
+          <div class="banner-body">
+            <div class="banner-tag">Problem Statement 4: Online Examination Resource Management</div>
+            <h2>Online Examination and Result Processing System</h2>
+            <p>During examinations, thousands of students submit answers simultaneously. This visualizer models the operating system kernel level coordination across four core mechanisms required to process submissions without deadlock, starvation, or race conditions.</p>
+          </div>
+          <div class="banner-specs">
+            <div class="spec-card">
+              <span class="spec-val">4</span>
+              <span class="spec-label">Core OS Concepts</span>
+            </div>
+            <div class="spec-card">
+              <span class="spec-val">3</span>
+              <span class="spec-label">Shared Resources</span>
+            </div>
+            <div class="spec-card">
+              <span class="spec-val">1024 KB</span>
+              <span class="spec-label">RAM Pool</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modules-grid">
+          <div class="module-card" data-goto="sync">
+            <div class="card-meta">Module 01 &bull; Synchronization</div>
+            <h3>Producer-Consumer Bounded Queue</h3>
+            <p>Models student answer submissions as Producers and auto-evaluation worker threads as Consumers communicating over a bounded buffer using semaphores (<code>mutex</code>, <code>empty</code>, <code>full</code>).</p>
+            <span class="card-link">Open Synchronization Module &rarr;</span>
+          </div>
+
+          <div class="module-card" data-goto="cpu">
+            <div class="card-meta">Module 02 &bull; CPU Scheduling</div>
+            <h3>Task Scheduler & Gantt Chart</h3>
+            <p>Schedules auto-grading, rank calculation, result compilation, and PDF generation using Priority Scheduling (Preemptive / Non-Preemptive), Round Robin, FCFS, and SJF with TAT &amp; WT metrics.</p>
+            <span class="card-link">Open Scheduling Module &rarr;</span>
+          </div>
+
+          <div class="module-card" data-goto="deadlock">
+            <div class="card-meta">Module 03 &bull; Deadlock Avoidance</div>
+            <h3>Banker's Algorithm Controller</h3>
+            <p>Manages allocation of Evaluation Engine Threads, Database Write Locks, and PDF Generator Slots. Evaluates the Safety Algorithm and validates resource requests.</p>
+            <span class="card-link">Open Banker's Module &rarr;</span>
+          </div>
+
+          <div class="module-card" data-goto="memory">
+            <div class="card-meta">Module 04 &bull; Memory Management</div>
+            <h3>Dynamic Memory Partitioning</h3>
+            <p>Allocates RAM blocks to answer packets and result PDFs using First Fit, Best Fit, and Worst Fit algorithms. Tracks external/internal fragmentation and performs memory compaction.</p>
+            <span class="card-link">Open Memory Module &rarr;</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- TAB 1: PRODUCER-CONSUMER (SYNC) -->
+      <section id="tab-sync" class="tab-content">
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <div class="form-row">
+              <label for="buffer-capacity">Buffer Capacity (N):</label>
+              <input type="number" id="buffer-capacity" value="8" min="4" max="16">
+            </div>
+            <button id="btn-add-producer" class="btn btn-secondary">+ Producer Thread</button>
+            <button id="btn-add-consumer" class="btn btn-secondary">+ Consumer Thread</button>
+            <button id="btn-flash-burst" class="btn btn-accent">Generate Burst Load (5 Submissions)</button>
+          </div>
+          <div class="toolbar-right">
+            <button id="btn-sync-toggle" class="btn btn-primary">Start Real-Time Ingestion</button>
+            <button id="btn-sync-reset" class="btn btn-danger">Reset Buffer</button>
+          </div>
+        </div>
+
+        <div class="split-view">
+          <!-- Bounded Buffer Area -->
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Bounded Answer Submission Buffer Queue</h3>
+              <div class="legend">
+                <span class="legend-item"><span class="box-legend empty"></span> Empty Slot</span>
+                <span class="legend-item"><span class="box-legend filled"></span> Queued Submission</span>
+                <span class="legend-item"><span class="box-legend busy"></span> Active Read</span>
+              </div>
+            </div>
+
+            <!-- Semaphores -->
+            <div class="semaphore-container">
+              <div class="sem-card">
+                <span class="sem-title">Mutex Semaphore</span>
+                <span id="sem-mutex" class="sem-number">1 (FREE)</span>
+              </div>
+              <div class="sem-card">
+                <span class="sem-title">Empty Slots (empty)</span>
+                <span id="sem-empty" class="sem-number">8</span>
+              </div>
+              <div class="sem-card">
+                <span class="sem-title">Filled Slots (full)</span>
+                <span id="sem-full" class="sem-number">0</span>
+              </div>
+              <div class="sem-card">
+                <span class="sem-title">Buffer Capacity</span>
+                <span id="buffer-util" class="sem-number">0%</span>
+              </div>
+            </div>
+
+            <!-- Visual Slot Grid -->
+            <div class="slot-grid" id="buffer-slots"></div>
+
+            <!-- Thread Activity Table -->
+            <div class="thread-grid">
+              <div class="thread-panel">
+                <h4>Producer Threads (Student Portals)</h4>
+                <div class="thread-list" id="producer-list"></div>
+              </div>
+              <div class="thread-panel">
+                <h4>Consumer Threads (Auto-Graders)</h4>
+                <div class="thread-list" id="consumer-list"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Log and Synchronization Explanation -->
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Synchronization Execution Log</h3>
+              <button class="btn btn-sm btn-secondary" id="btn-clear-sync-log">Clear</button>
+            </div>
+            <div class="log-console" id="sync-log"></div>
+            <div class="theory-box">
+              <strong>Synchronization Invariant:</strong>
+              <code>wait(empty); wait(mutex); // Critical Section: Enqueue Answer; signal(mutex); signal(full);</code>
+              <p>Ensures thread-safe answer queueing and prevents submission loss or race conditions under peak exam finish workloads.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: CPU SCHEDULING -->
+      <section id="tab-cpu" class="tab-content">
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <div class="form-row">
+              <label for="sched-algo">Scheduling Algorithm:</label>
+              <select id="sched-algo">
+                <option value="priority-nonpreempt">Priority Scheduling (Non-Preemptive)</option>
+                <option value="priority-preempt">Priority Scheduling (Preemptive)</option>
+                <option value="round-robin">Round Robin (RR)</option>
+                <option value="fcfs">First-Come, First-Served (FCFS)</option>
+                <option value="sjf">Shortest Job First (SJF)</option>
+              </select>
+            </div>
+            <div class="form-row" id="quantum-group" style="display: none;">
+              <label for="time-quantum">Time Quantum (q):</label>
+              <input type="number" id="time-quantum" value="2" min="1" max="10">
+            </div>
+            <button id="btn-load-preset-orders" class="btn btn-secondary">Load Benchmark Preset</button>
+            <button id="btn-add-order-task" class="btn btn-secondary">+ Add Exam Task</button>
+          </div>
+          <div class="toolbar-right">
+            <button id="btn-run-scheduler" class="btn btn-primary">Calculate Schedule</button>
+            <button id="btn-animate-gantt" class="btn btn-accent">Play Gantt Animation</button>
+          </div>
+        </div>
+
+        <div class="panel mb-3">
+          <div class="panel-header">
+            <h3>Active Task Queue</h3>
+            <span class="subtext">Note: Lower priority number indicates higher urgency (1 = Highest Priority)</span>
+          </div>
+          <div class="table-container">
+            <table class="academic-table" id="table-cpu-tasks">
+              <thead>
+                <tr>
+                  <th>Task ID</th>
+                  <th>Examination Task Description</th>
+                  <th>Category</th>
+                  <th>Arrival Time (AT)</th>
+                  <th>Burst Time (BT)</th>
+                  <th>Priority</th>
+                  <th>Completion (CT)</th>
+                  <th>Turnaround (TAT)</th>
+                  <th>Waiting Time (WT)</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="cpu-task-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel mb-3">
+          <div class="panel-header">
+            <h3>Gantt Chart Visualization</h3>
+            <span id="gantt-timer" class="timer-badge">Elapsed Time: 0 ms</span>
+          </div>
+          <div class="gantt-chart-box">
+            <div class="gantt-track" id="gantt-timeline"></div>
+            <div class="gantt-time-labels" id="gantt-scale"></div>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-label">Average Turnaround Time (TAT)</span>
+            <span class="stat-number" id="metric-avg-tat">0.00 ms</span>
+            <span class="stat-formula">TAT = CT - AT</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Average Waiting Time (WT)</span>
+            <span class="stat-number highlight-blue" id="metric-avg-wt">0.00 ms</span>
+            <span class="stat-formula">WT = TAT - BT</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">CPU Utilization</span>
+            <span class="stat-number" id="metric-cpu-util">100%</span>
+            <span class="stat-formula">Busy Time / Total Schedule Length</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Throughput</span>
+            <span class="stat-number" id="metric-throughput">0.00 tasks/ms</span>
+            <span class="stat-formula">Completed Tasks / Total Time</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: BANKER'S ALGORITHM (DEADLOCK) -->
+      <section id="tab-deadlock" class="tab-content">
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <button id="btn-banker-safe-preset" class="btn btn-secondary">Safe State Benchmark</button>
+            <button id="btn-banker-unsafe-preset" class="btn btn-secondary">Unsafe State Scenario</button>
+          </div>
+          <div class="toolbar-right">
+            <button id="btn-run-banker" class="btn btn-primary">Run Safety Algorithm</button>
+          </div>
+        </div>
+
+        <div class="resources-row mb-3">
+          <div class="res-card">
+            <div class="res-header">
+              <span class="res-code">R1</span>
+              <div>
+                <strong>Auto-Grading Engine Threads</strong>
+                <span class="res-sub">Concurrency slots (Total: 10)</span>
+              </div>
+            </div>
+          </div>
+          <div class="res-card">
+            <div class="res-header">
+              <span class="res-code">R2</span>
+              <div>
+                <strong>Database Write Locks (Result Ledger)</strong>
+                <span class="res-sub">Row-level mutex locks (Total: 5)</span>
+              </div>
+            </div>
+          </div>
+          <div class="res-card">
+            <div class="res-header">
+              <span class="res-code">R3</span>
+              <div>
+                <strong>PDF Generator &amp; Rank Slots</strong>
+                <span class="res-sub">Pooled report card workers (Total: 7)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="split-view">
+          <div class="panel">
+            <div class="panel-header">
+              <h3>System Resource Allocation Matrix</h3>
+              <div class="vector-display">
+                Available Vector [R1, R2, R3]: <strong id="vector-available">[3, 3, 2]</strong>
+              </div>
+            </div>
+
+            <div class="table-container">
+              <table class="academic-table matrix-table" id="table-banker-matrix">
+                <thead>
+                  <tr>
+                    <th rowspan="2">Process</th>
+                    <th colspan="3" class="center header-alloc">Allocation</th>
+                    <th colspan="3" class="center header-max">Max Demand</th>
+                    <th colspan="3" class="center header-need">Need (Max - Alloc)</th>
+                  </tr>
+                  <tr>
+                    <th>R1</th><th>R2</th><th>R3</th>
+                    <th>R1</th><th>R2</th><th>R3</th>
+                    <th>R1</th><th>R2</th><th>R3</th>
+                  </tr>
+                </thead>
+                <tbody id="banker-matrix-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Safety Algorithm Evaluation</h3>
+              <span id="safety-status-badge" class="badge-neutral">Ready</span>
+            </div>
+
+            <div class="safety-summary" id="safety-result-box">
+              <p>Click "Run Safety Algorithm" to execute the test and determine if a Safe Sequence exists.</p>
+            </div>
+
+            <div class="log-console" id="banker-step-log"></div>
+          </div>
+        </div>
+
+        <!-- Resource Request Form -->
+        <div class="panel mt-3">
+          <div class="panel-header">
+            <h3>Test Resource-Request Algorithm</h3>
+            <span class="subtext">Simulates a dynamic request to check if granting it maintains system safety</span>
+          </div>
+          <div class="request-row">
+            <div class="form-row">
+              <label for="req-process-select">Exam Task Process:</label>
+              <select id="req-process-select"></select>
+            </div>
+            <div class="form-row">
+              <label>Req R1 (Grader):</label>
+              <input type="number" id="req-r1" value="1" min="0" max="10">
+            </div>
+            <div class="form-row">
+              <label>Req R2 (DB Lock):</label>
+              <input type="number" id="req-r2" value="0" min="0" max="10">
+            </div>
+            <div class="form-row">
+              <label>Req R3 (PDF Slot):</label>
+              <input type="number" id="req-r3" value="2" min="0" max="10">
+            </div>
+            <button id="btn-submit-request" class="btn btn-accent">Evaluate Request</button>
+          </div>
+          <div id="request-eval-feedback" class="feedback-msg"></div>
+        </div>
+      </section>
+
+      <!-- TAB 4: MEMORY MANAGEMENT -->
+      <section id="tab-memory" class="tab-content">
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <div class="form-row">
+              <label for="mem-algo">Allocation Algorithm:</label>
+              <select id="mem-algo">
+                <option value="first-fit">First Fit</option>
+                <option value="best-fit">Best Fit</option>
+                <option value="worst-fit">Worst Fit</option>
+              </select>
+            </div>
+            <button id="btn-preset-memory" class="btn btn-secondary">Load Standard RAM State</button>
+            <button id="btn-compact-memory" class="btn btn-secondary">Run Memory Compaction</button>
+          </div>
+          <div class="toolbar-right">
+            <button id="btn-reset-memory" class="btn btn-danger">Reset Memory Pool</button>
+          </div>
+        </div>
+
+        <div class="panel mb-3">
+          <div class="panel-header">
+            <h3>Request Dynamic Memory Block</h3>
+            <span class="subtext">Allocates memory for student login tokens, answer buffers, and rank computation heaps</span>
+          </div>
+          <div class="request-row">
+            <div class="form-row">
+              <label for="mem-process-name">Task Label:</label>
+              <input type="text" id="mem-process-name" value="SUB #106 (Answer Script Buffer)">
+            </div>
+            <div class="form-row">
+              <label for="mem-process-size">Payload Size (KB):</label>
+              <input type="number" id="mem-process-size" value="120" min="10" max="800">
+            </div>
+            <button id="btn-allocate-mem" class="btn btn-primary">Allocate Memory Block</button>
+          </div>
+        </div>
+
+        <div class="panel mb-3">
+          <div class="panel-header">
+            <h3>Physical RAM Partition Map (1024 KB Pool)</h3>
+            <div class="legend">
+              <span class="legend-item"><span class="box-legend free-mem"></span> Free Memory Hole</span>
+              <span class="legend-item"><span class="box-legend alloc-mem"></span> Allocated Block</span>
+            </div>
+          </div>
+          <div class="ram-track-container">
+            <div class="ram-track" id="memory-bar"></div>
+            <div class="ram-scale" id="memory-scale">
+              <span>0 KB</span>
+              <span>256 KB</span>
+              <span>512 KB</span>
+              <span>768 KB</span>
+              <span>1024 KB</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="split-view">
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Memory Partition Table</h3>
+            </div>
+            <div class="table-container">
+              <table class="academic-table" id="table-memory-blocks">
+                <thead>
+                  <tr>
+                    <th>Block ID</th>
+                    <th>Status</th>
+                    <th>Start Address</th>
+                    <th>Block Size</th>
+                    <th>Allocated Process</th>
+                    <th>Payload Size</th>
+                    <th>Internal Frag.</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="memory-blocks-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Fragmentation Analysis</h3>
+            </div>
+            <div class="stats-grid compact-grid">
+              <div class="stat-card">
+                <span class="stat-label">Total Free Memory</span>
+                <span class="stat-number" id="stat-free-ram">0 KB</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">External Fragmentation</span>
+                <span class="stat-number text-warn" id="stat-ext-frag">0 KB</span>
+                <span class="stat-formula">Scattered free holes</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">Internal Fragmentation</span>
+                <span class="stat-number" id="stat-int-frag">0 KB</span>
+                <span class="stat-formula">Unused block space</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">RAM Utilization</span>
+                <span class="stat-number text-success" id="stat-ram-util">0%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/producer-consumer.js"></script>
+  <script src="js/cpu-scheduler.js"></script>
+  <script src="js/bankers-algorithm.js"></script>
+  <script src="js/memory-manager.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
